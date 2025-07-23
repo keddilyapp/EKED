@@ -1,0 +1,16 @@
+
+@if ($activeTheme == 'fastfood')
+    @includeIf('user-front.fastfood.partials.header')
+@elseif($activeTheme == 'bakery')
+    @includeIf('user-front.bakery.partials.header')
+@elseif($activeTheme == 'pizza')
+    @includeIf('user-front.pizza.partials.header')
+@elseif($activeTheme == 'coffee')
+    @includeIf('user-front.coffee.partials.header')
+@elseif($activeTheme == 'medicine')
+    @includeIf('user-front.medicine.partials.header')
+@elseif($activeTheme == 'grocery')
+    @includeIf('user-front.grocery.partials.header')
+@elseif($activeTheme == 'beverage')
+    @includeIf('user-front.beverage.partials.header')
+@endif
