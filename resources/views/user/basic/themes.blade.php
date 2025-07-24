@@ -129,18 +129,6 @@
                                             </label>
                                             <h5 class="text-center">{{__('Beverage Theme')}}</h5>
                                         </div>
-                                        <div class="col-4 col-sm-4">
-                                            <label class="imagecheck mb-2">
-                                                <input name="theme" type="radio" value="modern-shop"
-                                                    class="imagecheck-input"
-                                                    {{ !empty($abs->theme) && $abs->theme == 'modern-shop' ? 'checked' : '' }}>
-                                                <figure class="imagecheck-figure">
-                                                    <img src="{{ asset('assets/tenant/img/themes/modern-shop.png') }}"
-                                                        alt="title" class="imagecheck-image">
-                                                </figure>
-                                            </label>
-                                            <h5 class="text-center">{{__('Modern Shop Theme')}}</h5>
-                                        </div>
                                     </div>
                                 </div>
 
