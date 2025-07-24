@@ -87,6 +87,13 @@
               ({{ __('Expire Date') }}:
               {{ $current_package->term === 'lifetime' ? 'Lifetime' : Carbon\Carbon::parse($current_membership->expire_date)->format('M-d-Y') }})
             @endif
+            <br>
+            <small class="text-muted">
+              {{ __('Theme Limit') }}: {{ $current_package->theme_limit == 999999 ? 'Unlimited' : $current_package->theme_limit }} | 
+              {{ __('Custom Theme Upload') }}: {{ $current_package->custom_theme_upload ? 'Enabled' : 'Disabled' }} | 
+              {{ __('Online Payment') }}: {{ $current_package->online_payment_enabled ? 'Enabled' : 'Disabled' }} | 
+              {{ __('Offline Payment') }}: {{ $current_package->offline_payment_enabled ? 'Enabled' : 'Disabled' }}
+            </small>
 
             @if ($package_count >= 2)
               <div>

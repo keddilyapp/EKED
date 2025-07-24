@@ -50,7 +50,9 @@
                                                     <input type="checkbox" class="bulk-check" data-val="all">
                                                 </th>
                                                 <th scope="col" width="35%">{{ __('Title') }}</th>
-                                                <th scope="col">{{ __('Cost') }}</th>
+                                                <th scope="col">{{ __('Price') }}</th>
+                                                <th scope="col">{{ __('Themes') }}</th>
+                                                <th scope="col">{{ __('Payment') }}</th>
                                                 <th scope="col">{{ __('Status') }}</th>
                                                 <th scope="col">{{ __('Actions') }}</th>
                                             </tr>
@@ -75,6 +77,12 @@
 
                                                     </td>
                                                     <td>
+                                                        {{-- Add theme display logic here --}}
+                                                    </td>
+                                                    <td>
+                                                        {{-- Add payment display logic here --}}
+                                                    </td>
+                                                    <td>
                                                         @if ($package->status == 1)
                                                             <h2 class="d-inline-block">
                                                                 <span
@@ -93,7 +101,7 @@
                                                             <span class="btn-label">
                                                                 <i class="fas fa-edit"></i>
                                                             </span>
-                                                            
+
                                                         </a>
                                                         <form class="deleteform d-inline-block"
                                                             action="{{ route('admin.package.delete') }}" method="post">
@@ -104,7 +112,7 @@
                                                                 <span class="btn-label">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>
-                                                                
+
                                                             </button>
                                                         </form>
                                                     </td>
@@ -120,7 +128,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -164,7 +172,7 @@
 
 
                         <div class="form-group">
-                             
+
                             <label class="form-label">{{ __('Package Features') }}</label>
                             <div class="selectgroup selectgroup-pills">
                                 <label class="selectgroup-item">
@@ -269,7 +277,7 @@
                                     <span class="selectgroup-button">{{ __('PWA Installability') }}</span>
                                 </label>
                             </div>
-                          
+
                             <p id="erronline_order" class="mb-0 text-danger em"></p>
                             <p id="errpos_order" class="mb-0 text-danger em"></p>
                             <p id="errfeatures" class="mb-0 text-danger em"></p>
@@ -281,7 +289,7 @@
                                 <input type="number" class="form-control" name="storage_limit"
                                     placeholder="{{ __('Enter Storage Limit') }}" value="">
                                 <span class="input-group-text" id="basic-addon2">MB</span>
-                                
+
                             </div>
                             <p id="errstorage_limit" class="mb-0 text-danger em"></p>
                              <p class="text-warning mb-0">
@@ -462,5 +470,5 @@
 
 @section('scripts')
     <script src="{{ asset('assets/admin/js/packages.js') }}"></script>
- 
+
 @endsection

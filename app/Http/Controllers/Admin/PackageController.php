@@ -81,9 +81,18 @@ class PackageController extends Controller
     {
         if (!isset($request->featured)) $request["featured"] = "0";
         $features = json_encode($request->features);
-        Package::create($request->except('features') + [
+        $allowedThemes = $request->allowed_themes ? json_encode($request->allowed_themes) : null;
+        $paymentGateways = $request->payment_gateways ? json_encode($request->payment_gateways) : null;
+        
+        Package::create($request->except(['features', 'allowed_themes', 'payment_gateways']) + [
                 'slug' => make_slug($request->title),
                 'features' => $features,
+                'allowed_themes' => $allowedThemes,
+                'payment_gateways' => $paymentGateways,
+                'online_payment_enabled' => $request->online_payment_enabled ?? false,
+                'offline_payment_enabled' => $request->offline_payment_enabled ?? false,
+                'theme_limit' => $request->theme_limit ?? 999999,
+                'custom_theme_upload' => $request->custom_theme_upload ?? false,
         ]);
         Session::flash('success', "Package Created Successfully");
         return "success";
@@ -146,10 +155,19 @@ class PackageController extends Controller
        
         if (!isset($request->featured)) $request["featured"] = "0";
         $features = json_encode($request->features);
+        $allowedThemes = $request->allowed_themes ? json_encode($request->allowed_themes) : null;
+        $paymentGateways = $request->payment_gateways ? json_encode($request->payment_gateways) : null;
+        
         Package::query()->findOrFail($request->package_id)
-            ->update($request->except('features') + [
+            ->update($request->except(['features', 'allowed_themes', 'payment_gateways']) + [
                     'slug' => make_slug($request->title),
                     'features' => $features,
+                    'allowed_themes' => $allowedThemes,
+                    'payment_gateways' => $paymentGateways,
+                    'online_payment_enabled' => $request->online_payment_enabled ?? false,
+                    'offline_payment_enabled' => $request->offline_payment_enabled ?? false,
+                    'theme_limit' => $request->theme_limit ?? 999999,
+                    'custom_theme_upload' => $request->custom_theme_upload ?? false,
         ]);
         Session::flash('success', "Package Update Successfully");
         return "success";

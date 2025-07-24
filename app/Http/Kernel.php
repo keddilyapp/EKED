@@ -78,6 +78,8 @@ class Kernel extends HttpKernel
         'packageHasPermission' => PackageHasPermission::class,
         'limitCheck' => \App\Http\Middleware\LimitCheckMiddleware::class,
         'banStaff' => \App\Http\Middleware\StaffBanMiddleware::class,
+        'CheckPackageThemePermission' => \App\Http\Middleware\CheckPackageThemePermission::class,
+        'CheckPackagePaymentPermission' => \App\Http\Middleware\CheckPackagePaymentPermission::class,
     ];
 
     /**

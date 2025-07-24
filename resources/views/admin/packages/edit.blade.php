@@ -389,6 +389,92 @@
                                     <textarea id="meta_description" type="text" class="form-control" name="meta_description" rows="5">{{ $package->meta_description }}</textarea>
                                 </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="">Theme Limit **</label>
+                                                <input type="number" class="form-control" name="theme_limit" value="{{$package->theme_limit}}" placeholder="999999 for unlimited">
+                                                <p id="errtheme_limit" class="mb-0 text-danger em"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="">Custom Theme Upload **</label>
+                                                <div class="selectgroup w-100">
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="custom_theme_upload" value="1" class="selectgroup-input" {{$package->custom_theme_upload == 1 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Enable</span>
+                                                    </label>
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="custom_theme_upload" value="0" class="selectgroup-input" {{$package->custom_theme_upload == 0 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Disable</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Allowed Themes</label>
+                                        <select class="form-control select2" name="allowed_themes[]" multiple="multiple">
+                                            @php
+                                                $themes = ['bakery', 'beverage', 'coffee', 'fastfood', 'grocery', 'medicine', 'pizza'];
+                                                $selectedThemes = $package->getAllowedThemes();
+                                            @endphp
+                                            @foreach($themes as $theme)
+                                                <option value="{{$theme}}" {{in_array($theme, $selectedThemes) ? 'selected' : ''}}>{{ucfirst($theme)}}</option>
+                                            @endforeach
+                                        </select>
+                                        <p class="text-warning">Leave empty to allow all themes</p>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="">Online Payment **</label>
+                                                <div class="selectgroup w-100">
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="online_payment_enabled" value="1" class="selectgroup-input" {{$package->online_payment_enabled == 1 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Enable</span>
+                                                    </label>
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="online_payment_enabled" value="0" class="selectgroup-input" {{$package->online_payment_enabled == 0 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Disable</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="">Offline Payment **</label>
+                                                <div class="selectgroup w-100">
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="offline_payment_enabled" value="1" class="selectgroup-input" {{$package->offline_payment_enabled == 1 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Enable</span>
+                                                    </label>
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="offline_payment_enabled" value="0" class="selectgroup-input" {{$package->offline_payment_enabled == 0 ? 'checked' : ''}}>
+                                                        <span class="selectgroup-button">Disable</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Allowed Payment Gateways</label>
+                                        <select class="form-control select2" name="payment_gateways[]" multiple="multiple">
+                                            @php
+                                                $gateways = ['paypal', 'stripe', 'razorpay', 'paystack', 'flutterwave', 'mollie', 'instamojo', 'paytm', 'mercadopago'];
+                                                $selectedGateways = $package->getPaymentGateways();
+                                            @endphp
+                                            @foreach($gateways as $gateway)
+                                                <option value="{{$gateway}}" {{in_array($gateway, $selectedGateways) ? 'selected' : ''}}>{{ucfirst($gateway)}}</option>
+                                            @endforeach
+                                        </select>
+                                        <p class="text-warning">Leave empty to allow all payment gateways</p>
+                                    </div>
+
                             </form>
                         </div>
                     </div>
@@ -415,5 +501,5 @@
         const trialVal = {{ $package->is_trial }};
     </script>
     <script src="{{ asset('assets/admin/js/edit-package.js') }}"></script>
-  
+
 @endsection
