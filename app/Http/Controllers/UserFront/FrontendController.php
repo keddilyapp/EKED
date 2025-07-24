@@ -208,6 +208,11 @@ class FrontendController extends Controller
             return view('user-front.grocery.index', $data);
         } elseif ($currentTheme == "beverage") {
             return view('user-front.beverage.index', $data);
+        } elseif ($currentTheme == "modern-shop") {
+            // Add hero info for modern-shop theme
+            $data['heroInfo'] = $be;
+            $data['secInfo'] = $data['sectionHeading'];
+            return view('user-front.modern-shop.index', $data);
         }
         else{
             return view('user-front.fastfood.index', $data);

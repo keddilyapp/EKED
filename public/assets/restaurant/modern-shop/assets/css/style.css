@@ -1,0 +1,294 @@
+
+/* Modern Shop Theme Styles */
+
+/* Hero Section */
+.modern-hero-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.modern-hero-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.modern-btn {
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.modern-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+.animate-fade-up {
+    animation: fadeUp 1s ease-out;
+}
+
+.animate-fade-up.delay-1 {
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+.animate-fade-up.delay-2 {
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+}
+
+.animate-fade-up.delay-3 {
+    animation-delay: 0.6s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cards */
+.modern-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Feature Cards */
+.modern-feature-card {
+    padding: 30px 20px;
+    height: 100%;
+}
+
+.feature-icon {
+    margin-bottom: 20px;
+}
+
+.feature-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.feature-text {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Product Cards */
+.product-card {
+    position: relative;
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.product-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0;
+}
+
+/* Blog Cards */
+.blog-card .blog-image {
+    overflow: hidden;
+}
+
+.blog-card .blog-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.05);
+}
+
+.blog-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.blog-excerpt {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Sections */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Category Filter */
+.category-filter {
+    margin-bottom: 40px;
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    margin: 5px 10px;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.filter-item:hover,
+.filter-item.active {
+    background: #007bff;
+    color: #fff;
+}
+
+/* Special Section */
+.special-section {
+    background: #f8f9fa;
+}
+
+.special-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.special-text {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Intro Section */
+.intro-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.intro-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.point-item {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .banner-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .modern-hero-banner {
+        min-height: 80vh;
+    }
+    
+    .filter-list {
+        justify-content: center;
+    }
+    
+    .filter-item {
+        margin: 5px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
