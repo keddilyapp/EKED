@@ -33,7 +33,7 @@ class TableController extends Controller
         else{
             $data['features'] = [];
         }
-      
+
         $data['tables'] = Table::query()
             ->where('user_id', $userId)
             ->orderBy('table_no', 'ASC')
@@ -373,6 +373,22 @@ class TableController extends Controller
             }
         } else {
             return response()->download(public_path($pathToFile), $name);
+        }
+    }
+
+    // This function was missing from the original code, adding it based on the user message and thinking.
+    public function tableSectionUpdate(Request $request, $langid)
+    {
+        $userId = getRootUser()->id;
+
+        $rules = [
+            'table_section_img' => new ImageMimeTypeRule(),
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            $validator->getMessageBag()->add('error', 'true');
+            return response()->json($validator->errors());
         }
     }
 }

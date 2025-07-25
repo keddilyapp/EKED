@@ -162,7 +162,7 @@ class LimitCheckerHelper
         $countitem = Product::where('user_id', $userId);
         return $countitem ? $countitem->count() : 0;
     }  
- 
+
    public static function languageCount($userId)
     {
         $countlanguage = Language::where('user_id', $userId);
@@ -173,7 +173,7 @@ class LimitCheckerHelper
     {
         $user = User::find($userId);
         $membership = self::currentMembership($user->id);
-      
+
         $staff = User::where('admin_id',$userId);
         $userFeaturesCount = [];
         $userFeaturesCount['staffs'] = $staff->count();
@@ -186,5 +186,29 @@ class LimitCheckerHelper
         $userFeaturesCount['languages'] = $user->languages->count();
 
         return $userFeaturesCount;
+    }
+
+    public static function getAvailableThemes($userId)
+    {
+        $packageData = self::getPackageSelectedData($userId, 'allowed_themes');
+
+        if (!$packageData || empty($packageData->allowed_themes)) {
+            // If no restrictions, return all themes
+            return ['fastfood', 'pizza', 'coffee', 'bakery', 'beverage', 'grocery', 'medicine'];
+        }
+
+        return json_decode($packageData->allowed_themes, true);
+    }
+
+    public static function getAvailablePaymentGateways($userId)
+    {
+        $packageData = self::getPackageSelectedData($userId, 'payment_gateways');
+
+        if (!$packageData || empty($packageData->payment_gateways)) {
+            // If no restrictions, return all gateways
+            return [];
+        }
+
+        return json_decode($packageData->payment_gateways, true);
     }
 }

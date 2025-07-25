@@ -56,6 +56,19 @@ class PackagePermissionHelper
         return empty($allowedThemes) ? $allThemes : $allowedThemes;
     }
 
+    public static function getAvailableThemesForUser($userId)
+    {
+        $packageData = LimitCheckerHelper::getPackageSelectedData($userId, 'allowed_themes');
+        if (!$packageData) {
+            return [];
+        }
+
+        $allowedThemes = $packageData->allowed_themes ? json_decode($packageData->allowed_themes, true) : [];
+        $allThemes = ['bakery', 'beverage', 'coffee', 'fastfood', 'grocery', 'medicine', 'pizza'];
+        
+        return empty($allowedThemes) ? $allThemes : $allowedThemes;
+    }
+
     public static function getAvailablePaymentGateways()
     {
         $package = self::getCurrentPackage();

@@ -40,3 +40,52 @@ class CheckPackagePaymentPermission
         return $next($request);
     }
 }
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CheckPackagePaymentPermission
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if (Auth::guard('web')->check()) {
+            $user = Auth::guard('web')->user();
+            $package = null;
+            
+            if ($user->memberships()->where('status', 1)->where('expire_date', '>=', \Carbon\Carbon::now())->exists()) {
+                $membership = $user->memberships()->where('status', 1)->where('expire_date', '>=', \Carbon\Carbon::now())->first();
+                $package = $membership->package;
+            }
+            
+            if ($package) {
+                $requestedGateway = $request->route('gateway') ?? $request->get('gateway');
+                
+                if ($requestedGateway && !$package->hasPaymentGatewayAccess($requestedGateway)) {
+                    abort(403, 'Payment gateway not available in your current package');
+                }
+                
+                // Check if online/offline payments are enabled
+                $paymentType = $request->get('payment_type');
+                if ($paymentType === 'online' && !$package->canUseOnlinePayment()) {
+                    abort(403, 'Online payments not available in your current package');
+                }
+                if ($paymentType === 'offline' && !$package->canUseOfflinePayment()) {
+                    abort(403, 'Offline payments not available in your current package');
+                }
+            }
+        }
+        
+        return $next($request);
+    }
+}

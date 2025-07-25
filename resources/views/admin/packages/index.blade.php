@@ -281,194 +281,83 @@
                             <p id="erronline_order" class="mb-0 text-danger em"></p>
                             <p id="errpos_order" class="mb-0 text-danger em"></p>
                             <p id="errfeatures" class="mb-0 text-danger em"></p>
-                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div class="form-group" id="storage_input">
-                            <label for="storage_limit">{{ __('Storage Limit') }}*</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="storage_limit"
-                                    placeholder="{{ __('Enter Storage Limit') }}" value="">
-                                <span class="input-group-text" id="basic-addon2">MB</span>
+                                                <!-- Allowed Themes Section -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="">{{__('Allowed Themes')}} **</label>
+                                                            <div class="selectgroup selectgroup-pills">
+                                                                @php
+                                                                    $themes = ['bakery', 'beverage', 'coffee', 'fastfood', 'grocery', 'medicine', 'pizza'];
+                                                                @endphp
+                                                                @foreach($themes as $theme)
+                                                                    <label class="selectgroup-item">
+                                                                        <input type="checkbox" name="allowed_themes[]" value="{{$theme}}" class="selectgroup-input">
+                                                                        <span class="selectgroup-button">{{ucfirst($theme)}}</span>
+                                                                    </label>
+                                                                @endforeach
+                                                            </div>
+                                                            <p class="text-warning mb-0">{{__('Leave unchecked to allow all themes')}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                            </div>
-                            <p id="errstorage_limit" class="mb-0 text-danger em"></p>
-                             <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                        </div>
+                                                <!-- Payment Options Section -->
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="">{{__('Online Payment')}} **</label>
+                                                            <div class="selectgroup w-100">
+                                                                <label class="selectgroup-item">
+                                                                    <input type="radio" name="online_payment_enabled" value="1" class="selectgroup-input" checked>
+                                                                    <span class="selectgroup-button">{{__('Enable')}}</span>
+                                                                </label>
+                                                                <label class="selectgroup-item">
+                                                                    <input type="radio" name="online_payment_enabled" value="0" class="selectgroup-input">
+                                                                    <span class="selectgroup-button">{{__('Disable')}}</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="">{{__('Offline Payment')}} **</label>
+                                                            <div class="selectgroup w-100">
+                                                                <label class="selectgroup-item">
+                                                                    <input type="radio" name="offline_payment_enabled" value="1" class="selectgroup-input" checked>
+                                                                    <span class="selectgroup-button">{{__('Enable')}}</span>
+                                                                </label>
+                                                                <label class="selectgroup-item">
+                                                                    <input type="radio" name="offline_payment_enabled" value="0" class="selectgroup-input">
+                                                                    <span class="selectgroup-button">{{__('Disable')}}</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div class="form-group" id="staff_input">
-                            <label for="staff_limit">{{ __('Number Of Staffs Limit') }}*</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="staff_limit"
-                                    placeholder="{{ __('Enter Staff Limit') }}" value="">
-                            </div>
-                            <p id="errstaff_limit" class="mb-0 text-danger em"></p>
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                        </div>
-                        <div class="form-group" id="order_input">
-                            <label for="order_limit">{{ __('Number Of Orders Limit') }}*</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="order_limit"
-                                    placeholder="{{ __('Enter Order Limit') }}" value="">
-                            </div>
-                            <p id="errorder_limit" class="mb-0 text-danger em"></p>
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                        </div>
-                        <div class="form-group">
-                            <label for="categories_limit">{{ __('Number Of Categories Limit') }}*</label>
-                            <input id="categories_limit" type="number" class="form-control" name="categories_limit"
-                                placeholder="{{ __('Enter categories limit') }}" value="">
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                            <p id="errcategories_limit" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="subcategories_limit">{{ __('Number Of Subcategories Limit') }}*</label>
-                            <input id="subcategories_limit" type="number" class="form-control"
-                                name="subcategories_limit" placeholder="{{ __('Enter subcategories limit') }}"
-                                value="">
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                            <p id="errsubcategories_limit" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="items_limit">{{ __('Number Of Items Limit') }}*</label>
-                            <input id="items_limit" type="number" class="form-control" name="items_limit"
-                                placeholder="{{ __('Enter items limit') }}" value="">
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                            <p id="erritems_limit" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group" id="table_reservation_input">
-                            <label for="table_reservation_limit">{{ __('Number Of Table Reservations Limit') }}*</label>
-                            <input id="table_reservation_limit" type="number" class="form-control"
-                                name="table_reservation_limit" placeholder="{{ __('Enter table reservation limit') }}"
-                                value="">
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                            <p id="errtable_reservation_limit" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="language_limit">{{ __('Number Of Languages Limit') }}*</label>
-                            <input id="language_limit" type="number" class="form-control" name="language_limit"
-                                placeholder="{{ __('Enter language limit') }}" value="">
-                            <p class="text-warning mb-0">
-                                <small>{{ __('Enter 999999 , then it will appear as unlimited') }}</small>
-                            </p>
-                            <p id="errlanguage_limit" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">{{ __('Featured') }} *</label>
-                            <div class="selectgroup w-100">
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="featured" value="1" class="selectgroup-input">
-                                    <span class="selectgroup-button">{{ __('Yes') }}</span>
-                                </label>
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="featured" value="0" class="selectgroup-input"
-                                        checked>
-                                    <span class="selectgroup-button">{{ __('No') }}</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Recommended *</label>
-                            <div class="selectgroup w-100">
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="recommended" value="1" class="selectgroup-input">
-                                    <span class="selectgroup-button">Yes</span>
-                                </label>
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="recommended" value="0" class="selectgroup-input"
-                                        checked>
-                                    <span class="selectgroup-button">No</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Icon **</label>
-                            <div class="btn-group d-block">
-                                <button type="button" class="btn btn-primary iconpicker-component"><i
-                                        class="fa fa-fw fa-heart"></i></button>
-                                <button type="button" class="icp icp-dd btn btn-primary dropdown-toggle"
-                                    data-selected="fa-car" data-toggle="dropdown">
-                                </button>
-                                <div class="dropdown-menu"></div>
-                            </div>
-                            <input id="inputIcon" type="hidden" name="icon" value="fas fa-heart">
-                            @if ($errors->has('icon'))
-                                <p class="mb-0 text-danger">{{ $errors->first('icon') }}</p>
-                            @endif
-                            <div class="mt-2">
-                                <small>NB: click on the dropdown sign to select a icon.</small>
-                            </div>
-                            <p id="erricon" class="mb-0 text-danger em"></p>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="form-label">{{ __('Trial') }} *</label>
-                            <div class="selectgroup w-100">
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="is_trial" value="1" class="selectgroup-input">
-                                    <span class="selectgroup-button">{{ __('Yes') }}</span>
-                                </label>
-                                <label class="selectgroup-item">
-                                    <input type="radio" name="is_trial" value="0" class="selectgroup-input"
-                                        checked>
-                                    <span class="selectgroup-button">{{ __('No') }}</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group d-none" id="trial_day">
-                            <label for="trial_days">{{ __('Trial days') }}*</label>
-                            <input id="trial_days" type="number" class="form-control" name="trial_days"
-                                placeholder="{{ __('Enter trial days') }}" value="">
-                            <p id="errtrial_days" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">{{ __('Status') }}*</label>
-                            <select id="status" class="form-control ltr" name="status">
-                                <option value="" selected disabled>{{ __('Select a status') }}</option>
-                                <option value="1">{{ __('Active') }}</option>
-                                <option value="0">{{ __('Deactive') }}</option>
-                            </select>
-                            <p id="errstatus" class="mb-0 text-danger em"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="">{{ __('Meta Keywords') }}</label>
-                            <input type="text" class="form-control" name="meta_keywords" value=""
-                                data-role="tagsinput">
-                        </div>
-                        <div class="form-group">
-                            <label for="meta_description">{{ __('Meta Description') }}</label>
-                            <textarea id="meta_description" type="text" class="form-control" name="meta_description" rows="5">
-                            </textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                    <button id="submitBtn" type="button" class="btn btn-primary">{{ __('Submit') }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('assets/admin/js/packages.js') }}"></script>
-
-@endsection
+                                                <!-- Allowed Payment Gateways Section -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="">{{__('Allowed Payment Gateways')}} **</label>
+                                                            <div class="selectgroup selectgroup-pills">
+                                                                @php
+                                                                    $gateways = ['paypal', 'stripe', 'razorpay', 'paytm', 'paystack', 'mollie', 'instamojo', 'flutterwave', 'mercadopago', 'midtrans', 'iyzico', 'toyyibpay', 'paytabs', 'phonepe', 'perfectmoney', 'authorizenet', 'myfatoorah', 'xendit'];
+                                                                @endphp
+                                                                @foreach($gateways as $gateway)
+                                                                    <label class="selectgroup-item">
+                                                                        <input type="checkbox" name="payment_gateways[]" value="{{$gateway}}" class="selectgroup-input">
+                                                                        <span class="selectgroup-button">{{ucfirst($gateway)}}</span>
+                                                                    </label>
+                                                                @endforeach
+                                                            </div>
+                                                            <p class="text-warning mb-0">{{__('Leave unchecked to allow all payment gateways')}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
